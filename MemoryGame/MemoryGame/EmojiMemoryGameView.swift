@@ -7,6 +7,7 @@ struct EmojiMemoryGameView: View {
     
     var body: some View {
         VStack{
+            ContentView(viewModel: viewModel)
             ScrollView {
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: minimumColumnWidth))]) {
                     ForEach(viewModel.cards){ card in
