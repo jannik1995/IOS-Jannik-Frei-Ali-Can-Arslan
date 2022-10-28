@@ -3,15 +3,23 @@ import Foundation
 class EmojiMemoryGameViewModel: ObservableObject {
     
     init() {
-        model = EmojiMemoryGameViewModel.createMemoryGame()
+        model = EmojiMemoryGameViewModel.createMemoryGame(EmojiSet: 0, Difficulty: "Leicht" )
     }
     
     @Published private var model: MemoryGame<String>
     
-    static func createMemoryGame()->MemoryGame<String> {
-        let emojiis: Array<String> = ["🙈", "🙉", "🙊", "🦁", "🐮", "🐷", "🐸", "🐒", "🐔", "🐧", "🐦", "🐤", "🦆", "🦅", "🦉", "🦇", "🐺", "🐗", "🐴", "🦄", "🐝", "🪱", "🐛", "🦋", "🐌", "🐞", "🐜", "🪰", "🪲", "🪳", "🦟", "🦗", "🕷", "🦂", "🐢", "🐍", "🦎", "🦖"]
-        return  MemoryGame<String>(numberOfPairsOfCards: emojiis.count, cardContentFactory: { pairIndex in
-            return emojiis[pairIndex]
+    
+    static func createMemoryGame(EmojiSet: Int,Difficulty: String)->MemoryGame<String> {
+        
+        let themes = [
+            ["😀","😬","😁","😂","😃","😄","😅","😆","😇","😉","😊","🙂","🙃","☺️","😋","😌","😍","😘","😗","😙","😚","😜","😝","😛","🤑","🤓","😎","🤗","😏","😶","😐","😑","😒","🙄","🤔","😳","😞","😟","😠","😡","😔","😕","🙁","☹️","😣","😖","😫","😩","😤","😮","😱","😨","😰","😯","😦","😧","😢","😥","😪","😓","😭","😵","😲","🤐","😷","🤒","🤕","😴"],
+            ["🐶","🐱","🐭","🐹","🐰","🐻","🐼","🐨","🐯","🦁","🐮","🐷","🐽","🐸","🐙","🐵","🙈","🙉","🙊","🐒","🐔","🐧","🐦","🐤","🐣","🐥","🐺","🐗","🐴","🦄","🐝","🐛","🐌","🐞","🐜","🕷","🦂","🦀","🐍","🐢","🐠","🐟","🐡","🐬","🐳","🐋","🐊","🐆","🐅","🐃","🐂","🐄","🐪","🐫","🐘","🐐","🐏","🐑","🐎","🐖","🐀","🐁","🐓","🦃","🕊","🐕","🐩","🐈","🐇","🐿","🐉","🐲"]
+            ]
+        
+        let playingTheme = themes[EmojiSet]
+        
+        return  MemoryGame<String>(numberOfPairsOfCards: playingTheme.count, cardContentFactory: { pairIndex in
+            return playingTheme[pairIndex]
         })
     }
     
@@ -25,8 +33,8 @@ class EmojiMemoryGameViewModel: ObservableObject {
         model.choose(card: card)
     }
     
-    func resetGame(){
-       model = EmojiMemoryGameViewModel.createMemoryGame()
+    func newGame(EmojiSet: Int,Difficulty: String){
+       model = EmojiMemoryGameViewModel.createMemoryGame(EmojiSet: EmojiSet, Difficulty: Difficulty)
     }
     
 }

@@ -7,7 +7,6 @@ struct EmojiMemoryGameView: View {
     
     var body: some View {
         VStack{
-            ContentView(viewModel: viewModel)
             ScrollView {
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: minimumColumnWidth))]) {
                     ForEach(viewModel.cards){ card in
@@ -21,11 +20,7 @@ struct EmojiMemoryGameView: View {
                     }
                 }.foregroundColor(Color.blue)
             }.padding(.horizontal)
-            Button(action: {
-                withAnimation(.easeInOut){
-                    self.viewModel.resetGame()
-                }
-            }, label: {Text("New Game")})
+            ContentView(viewModel: viewModel)
         }
     }
     

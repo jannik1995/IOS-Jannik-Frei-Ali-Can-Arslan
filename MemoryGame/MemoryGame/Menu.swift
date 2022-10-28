@@ -8,7 +8,7 @@
 import SwiftUI
 
 private let minimumColumnWidth = Double(100)
-private var selctedEmojiSet = "Emoticon";
+private var selctedEmojiSet = 0;
 private var selcetedDifficulty = "Mittel";
 
 struct Menu: View {
@@ -22,7 +22,7 @@ struct Menu: View {
                 EmojiSelection()
                 DifficultySelecion()
                 Button("Spiel starten") {
-                    viewModel.resetGame()
+                    viewModel.newGame(EmojiSet: selctedEmojiSet, Difficulty: selcetedDifficulty)
                     dismiss()
                 }
                 .font(.title)
@@ -37,12 +37,12 @@ struct Menu: View {
     }
     
     struct ContentView: View {
-        @State private var showingSheet = false
+        @State private var showingSheet = true
         @ObservedObject
         var viewModel: EmojiMemoryGameViewModel
         
         var body: some View {
-            Button("Menü") {
+            Button("Neues Spiel") {
                 showingSheet.toggle()
             }
             .sheet(isPresented: $showingSheet) {
@@ -56,9 +56,9 @@ struct Menu: View {
             Text("Emoji Auswahl")
             LazyVGrid(columns: [GridItem(.adaptive(minimum: minimumColumnWidth))]) {
                 Button(action: {
-                    selctedEmojiSet = "Emoticons";
+                    selctedEmojiSet = 0;
                 }, label: {
-                  Text("Emoticons")
+                  Text("🦁")
                     .padding()
                     .foregroundColor(.white)
                     .background(Color.blue)
@@ -66,7 +66,7 @@ struct Menu: View {
                     .frame(width: 100, height: 200)
                 })
                 Button(action: {
-                    selctedEmojiSet = "Misc Symbols and Pictographs";
+                    selctedEmojiSet = 1;
                 }, label: {
                   Text("Misc Symbols and Pictographs")
                     .padding()
@@ -76,7 +76,7 @@ struct Menu: View {
                     .frame(width: 100, height: 200)
                 })
                 Button(action: {
-                    selctedEmojiSet = "Regional country flags";
+                    selctedEmojiSet = 2;
                 }, label: {
                   Text("Regional country flags")
                     .padding()
@@ -86,17 +86,6 @@ struct Menu: View {
                     .frame(width: 100, height: 200)
                 })
                 
-                /*
-                Button("Variation selector"){
-                    selctedSet = "Variation selector";
-                }
-                Button("Misc items"){
-                    
-                }
-                Button("Combining Diacritical Marks for Symbols"){
-                    
-                }
-                 */
             }
         }
     }
