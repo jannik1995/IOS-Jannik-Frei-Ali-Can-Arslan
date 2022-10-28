@@ -7,9 +7,17 @@
 
 import SwiftUI
 
+enum Difficulty: Int{
+    case easy = 6
+    case medium = 12
+    case hard = 18
+}
+
 private let minimumColumnWidth = Double(100)
 private var selctedEmojiSet = 0;
-private var selcetedDifficulty = "Mittel";
+private var selcetedDifficulty = Difficulty.easy;
+
+
 
 struct Menu: View {
     @Environment(\.dismiss) var dismiss
@@ -95,7 +103,7 @@ struct DifficultySelecion:View{
         Text("Schwierigkeitsgrad")
         LazyVGrid(columns: [GridItem(.adaptive(minimum: minimumColumnWidth))]) {
             Button(action: {
-                selcetedDifficulty = "Leicht";
+                selcetedDifficulty = Difficulty.easy;
             }, label: {
               Text("Leicht")
                 .padding()
@@ -105,7 +113,7 @@ struct DifficultySelecion:View{
                 .frame(width: 100, height: 200)
             })
             Button(action: {
-                selcetedDifficulty = "Mittel";
+                selcetedDifficulty = Difficulty.medium;
             }, label: {
               Text("Mittel")
                 .padding()
@@ -115,7 +123,7 @@ struct DifficultySelecion:View{
                 .frame(width: 100, height: 200)
             })
             Button(action: {
-                selcetedDifficulty = "Schwer";
+                selcetedDifficulty = Difficulty.hard;
             }, label: {
               Text("Schwer")
                 .padding()

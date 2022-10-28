@@ -4,6 +4,10 @@ struct MemoryGame<CardContent> where CardContent: Equatable{
     
     private(set) var cards: Array<Card>
     
+    var scoreCounter = 0;
+    var highScore = UserDefaults.standard.integer(forKey: "HighScoreKey");
+    
+    
     private var indexOfFaceUpCard: Int?{
         get{
             cards.indices.filter { cards[$0].isFaceUp }.only
@@ -25,6 +29,14 @@ struct MemoryGame<CardContent> where CardContent: Equatable{
                 if cards[chosenIndex].content == cards[potentialMatchIndex].content{
                     cards[chosenIndex].isMatched = true
                     cards[potentialMatchIndex].isMatched = true
+                    scoreCounter = 1 + scoreCounter
+                    if(cards[potentialMatchIndex].hasEarnedBonus) {
+                        scoreCounter = 1 + scoreCounter
+                    }
+                    if(scoreCounter > highScore){
+                        highScore = scoreCounter
+                        UserDefaults.standard.set(highScore, forKey: "HighScoreKey")
+                    }
                 }
                 self.cards[chosenIndex].isFaceUp = true
             }

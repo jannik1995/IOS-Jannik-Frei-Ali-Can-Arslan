@@ -6,7 +6,10 @@ struct EmojiMemoryGameView: View {
     var viewModel: EmojiMemoryGameViewModel
     
     var body: some View {
+        
         VStack{
+            Text("High Score: " + String(viewModel.getHighScore()) )
+            Text("Score: " + String(viewModel.getScore()))
             ScrollView {
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: minimumColumnWidth))]) {
                     ForEach(viewModel.cards){ card in

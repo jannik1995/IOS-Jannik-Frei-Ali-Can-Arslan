@@ -1,22 +1,26 @@
 import Foundation
+import SwiftUI
 
 class EmojiMemoryGameViewModel: ObservableObject {
     
     init() {
-        model = EmojiMemoryGameViewModel.createMemoryGame(EmojiSet: 0, Difficulty: "Leicht" )
+        model = EmojiMemoryGameViewModel.createMemoryGame(EmojiSet: 0, Difficulty: Difficulty.easy )
     }
+    
+    
     
     @Published private var model: MemoryGame<String>
     
     
-    static func createMemoryGame(EmojiSet: Int,Difficulty: String)->MemoryGame<String> {
+    static func createMemoryGame(EmojiSet: Int,Difficulty: Difficulty)->MemoryGame<String> {
         
         let themes = [
             ["😀","😬","😁","😂","😃","😄","😅","😆","😇","😉","😊","🙂","🙃","☺️","😋","😌","😍","😘","😗","😙","😚","😜","😝","😛","🤑","🤓","😎","🤗","😏","😶","😐","😑","😒","🙄","🤔","😳","😞","😟","😠","😡","😔","😕","🙁","☹️","😣","😖","😫","😩","😤","😮","😱","😨","😰","😯","😦","😧","😢","😥","😪","😓","😭","😵","😲","🤐","😷","🤒","🤕","😴"],
             ["🐶","🐱","🐭","🐹","🐰","🐻","🐼","🐨","🐯","🦁","🐮","🐷","🐽","🐸","🐙","🐵","🙈","🙉","🙊","🐒","🐔","🐧","🐦","🐤","🐣","🐥","🐺","🐗","🐴","🦄","🐝","🐛","🐌","🐞","🐜","🕷","🦂","🦀","🐍","🐢","🐠","🐟","🐡","🐬","🐳","🐋","🐊","🐆","🐅","🐃","🐂","🐄","🐪","🐫","🐘","🐐","🐏","🐑","🐎","🐖","🐀","🐁","🐓","🦃","🕊","🐕","🐩","🐈","🐇","🐿","🐉","🐲"]
             ]
-        
-        let playingTheme = themes[EmojiSet]
+        let screenSize = Int(UIScreen.main.bounds.width)
+        print(screenSize)
+        let playingTheme = themes[EmojiSet].shuffled()[..<(Difficulty.rawValue )]
         
         return  MemoryGame<String>(numberOfPairsOfCards: playingTheme.count, cardContentFactory: { pairIndex in
             return playingTheme[pairIndex]
@@ -33,8 +37,22 @@ class EmojiMemoryGameViewModel: ObservableObject {
         model.choose(card: card)
     }
     
-    func newGame(EmojiSet: Int,Difficulty: String){
+    func newGame(EmojiSet: Int,Difficulty: Difficulty){
        model = EmojiMemoryGameViewModel.createMemoryGame(EmojiSet: EmojiSet, Difficulty: Difficulty)
+    }
+    
+    func cardAmountDisplay(Difficulty: Difficulty, ScreenSize: Int, ElementAmount: Int) -> Int{
+        
+        return Difficulty.rawValue * ScreenSize % ElementAmount
+        
+    }
+    
+    func getScore()->Int{
+        return model.scoreCounter
+    }
+    
+    func getHighScore()->Int{
+        return model.highScore
     }
     
 }
