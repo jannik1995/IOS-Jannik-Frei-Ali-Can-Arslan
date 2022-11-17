@@ -2,7 +2,7 @@ import SwiftUI
 
 struct CardView: View{
     
-    var card: MemoryGame<String>.Card
+    var card: MemoryGame<CardObjectWrapper>.Card
     
     var body: some View {
         GeometryReader { geometry in
@@ -39,10 +39,21 @@ struct CardView: View{
                     }
                 }.padding(5)
                     .opacity(opacity)
-                Text(card.content)
-                    .font(Font.system(size: fontSize(for: size)))
-                    .rotationEffect(Angle(degrees: card.isMatched ? rotationEnd : rotationStart))
-                    .animation(card.isMatched ? Animation.linear(duration: contentRotationDuration).repeatForever(autoreverses: false) : .default)
+                
+                switch card.content.obj {
+                case is String: Text(card.content.obj as! String)
+                        .font(Font.system(size: fontSize(for: size)))
+                        .rotationEffect(Angle(degrees: card.isMatched ? rotationEnd : rotationStart))
+                        .animation(card.isMatched ? Animation.linear(duration: contentRotationDuration).repeatForever(autoreverses: false) : .default)
+                case is AnyView: (card.content.obj as! AnyView)
+                        .font(Font.system(size: fontSize(for: size)))
+                        .rotationEffect(Angle(degrees: card.isMatched ? rotationEnd : rotationStart))
+                        .animation(card.isMatched ? Animation.linear(duration: contentRotationDuration).repeatForever(autoreverses: false) : .default)
+
+                default:
+                    Text("Error")
+                }
+                
             }
             .cardify(isFaceUp: card.isFaceUp)
             .transition(.scale)

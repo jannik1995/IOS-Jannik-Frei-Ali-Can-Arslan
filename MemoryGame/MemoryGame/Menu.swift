@@ -14,8 +14,8 @@ enum Difficulty: Int{
 }
 
 private let minimumColumnWidth = Double(100)
-private var selctedEmojiSet = 0;
-private var selcetedDifficulty = Difficulty.easy;
+private var selectedEmojiSet = 0;
+private var selecetedDifficulty = Difficulty.easy;
 
 
 
@@ -30,7 +30,7 @@ struct Menu: View {
                 EmojiSelection()
                 DifficultySelecion()
                 Button("Spiel starten") {
-                    viewModel.newGame(EmojiSet: selctedEmojiSet, Difficulty: selcetedDifficulty)
+                    viewModel.newGame(EmojiSet: selectedEmojiSet, Difficulty: selecetedDifficulty)
                     dismiss()
                 }
                 .font(.title)
@@ -60,36 +60,40 @@ struct Menu: View {
     }
     
     struct EmojiSelection:View{
+        @State private var selectedSet: Int = selectedEmojiSet
         var body: some View{
             Text("Emoji Auswahl")
             LazyVGrid(columns: [GridItem(.adaptive(minimum: minimumColumnWidth))]) {
                 Button(action: {
-                    selctedEmojiSet = 0;
+                    selectedEmojiSet = 0;
+                    selectedSet = 0;
                 }, label: {
-                  Text("🦁")
+                  Text("Faces")
                     .padding()
                     .foregroundColor(.white)
-                    .background(Color.blue)
+                    .background(selectedSet == 0 ?  .blue : .gray)
                     .cornerRadius(8)
                     .frame(width: 100, height: 200)
                 })
                 Button(action: {
-                    selctedEmojiSet = 1;
+                    selectedEmojiSet = 1;
+                    selectedSet = 1;
                 }, label: {
-                  Text("Misc Symbols and Pictographs")
+                  Text("Animals")
                     .padding()
                     .foregroundColor(.white)
-                    .background(Color.blue)
+                    .background(selectedSet == 1 ?  .blue : .gray)
                     .cornerRadius(8)
                     .frame(width: 100, height: 200)
                 })
                 Button(action: {
-                    selctedEmojiSet = 2;
+                    selectedEmojiSet = 2;
+                    selectedSet = 2;
                 }, label: {
-                  Text("Regional country flags")
+                  Text("Shapes")
                     .padding()
                     .foregroundColor(.white)
-                    .background(Color.blue)
+                    .background(selectedSet == 2 ?  .blue : .gray)
                     .cornerRadius(8)
                     .frame(width: 100, height: 200)
                 })
@@ -103,7 +107,7 @@ struct DifficultySelecion:View{
         Text("Schwierigkeitsgrad")
         LazyVGrid(columns: [GridItem(.adaptive(minimum: minimumColumnWidth))]) {
             Button(action: {
-                selcetedDifficulty = Difficulty.easy;
+                selecetedDifficulty = Difficulty.easy;
             }, label: {
               Text("Leicht")
                 .padding()
@@ -113,7 +117,7 @@ struct DifficultySelecion:View{
                 .frame(width: 100, height: 200)
             })
             Button(action: {
-                selcetedDifficulty = Difficulty.medium;
+                selecetedDifficulty = Difficulty.medium;
             }, label: {
               Text("Mittel")
                 .padding()
@@ -123,7 +127,7 @@ struct DifficultySelecion:View{
                 .frame(width: 100, height: 200)
             })
             Button(action: {
-                selcetedDifficulty = Difficulty.hard;
+                selecetedDifficulty = Difficulty.hard;
             }, label: {
               Text("Schwer")
                 .padding()
