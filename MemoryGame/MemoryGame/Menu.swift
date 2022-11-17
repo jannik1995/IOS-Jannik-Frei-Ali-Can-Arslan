@@ -13,7 +13,6 @@ enum Difficulty: Int{
     case hard = 18
 }
 
-private let minimumColumnWidth = Double(100)
 private var selectedEmojiSet = 0;
 private var selecetedDifficulty = Difficulty.easy;
 
@@ -23,6 +22,7 @@ struct Menu: View {
     @Environment(\.dismiss) var dismiss
     @ObservedObject
     var viewModel: EmojiMemoryGameViewModel
+    
     
     var body: some View {
         VStack{
@@ -45,6 +45,7 @@ struct Menu: View {
             
         }
     }
+    
     }
     
     struct ContentView: View {
@@ -63,86 +64,162 @@ struct Menu: View {
     }
     
     struct EmojiSelection:View{
+        var screenWidth = UIScreen.main.bounds.width
         @State private var selectedSet: Int = selectedEmojiSet
         var body: some View{
             Spacer().frame(height: 30)
             Text("Kartenauswahl").font(.title)
             Spacer().frame(height: 30)
+            if (screenWidth<1000){
+                 let minimumColumnWidth = Double(UIScreen.main.bounds.width/4)
             LazyVGrid(columns: [GridItem(.adaptive(minimum: minimumColumnWidth))]) {
-                Button (action:{
-                    selectedEmojiSet = 0;
-                    selectedSet = 0;
-                }, label: {
-                    Text("Smiley")
-                        .padding()
-                        .foregroundColor(.white)
-                        .background(selectedSet == 0 ?  .blue : .gray)
-                        .cornerRadius(8)
-                        .frame(maxWidth: .infinity)
-                        .buttonStyle(.borderedProminent)
-                })
-                .frame(width: (UIScreen.main.bounds.width/4), height: 50, alignment: .center)
-                .background(selectedSet == 0 ?  .blue : .gray)
-                .cornerRadius(8)
-               
-                Button (action:{
-                    selectedEmojiSet = 1;
-                    selectedSet = 1;
-                }, label: {
-                    Text("Tiere")
-                        .padding()
-                        .foregroundColor(.white)
-                        .background(selectedSet == 1 ?  .blue : .gray)
-                        .cornerRadius(8)
-                        .frame(maxWidth: .infinity)
-                        .buttonStyle(.borderedProminent)
-                })
-                .frame(width: (UIScreen.main.bounds.width/4), height: 50, alignment: .center)
-                .background(selectedSet == 1 ?  .blue : .gray)
-                .cornerRadius(8)
                 
+                
+                    Button (action:{
+                        selectedEmojiSet = 0;
+                        selectedSet = 0;
+                    }, label: {
+                        Text("Smiley")
+                            .padding()
+                            .foregroundColor(.white)
+                            .background(selectedSet == 0 ?  .blue : .gray)
+                            .cornerRadius(8)
+                            .frame(width: (screenWidth/4), height: 50, alignment: .center)
+                            .buttonStyle(.borderedProminent)
+                    })
+                    .frame(width: (screenWidth/4), height: 50, alignment: .center)
+                    .background(selectedSet == 0 ?  .blue : .gray)
+                    .cornerRadius(8)
+                    
+                    Button (action:{
+                        selectedEmojiSet = 1;
+                        selectedSet = 1;
+                    }, label: {
+                        Text("Tiere")
+                            .padding()
+                            .foregroundColor(.white)
+                            .background(selectedSet == 1 ?  .blue : .gray)
+                            .cornerRadius(8)
+                            .frame(width: (screenWidth/4), height: 50, alignment: .center)
+                            .buttonStyle(.borderedProminent)
+                    })
+                    .frame(width: (screenWidth/4), height: 50, alignment: .center)
+                    .background(selectedSet == 1 ?  .blue : .gray)
+                    .cornerRadius(8)
+                    
+                    Button (action:{
+                        selectedEmojiSet = 2;
+                        selectedSet = 2;
+                    }, label: {
+                        Text("Flaggen")
+                            .padding()
+                            .foregroundColor(.white)
+                            .background(selectedSet == 2 ?  .blue : .gray)
+                            .cornerRadius(8)
+                            .frame(width: (screenWidth/4), height: 50, alignment: .center)
+                            .buttonStyle(.borderedProminent)
+                    })
+                    .frame(width: (screenWidth/4), height: 50, alignment: .center)
+                    .background(selectedSet == 2 ?  .blue : .gray)
+                    .cornerRadius(8)
+                }
+                Spacer().frame(height: 30)
                 Button (action:{
-                    selectedEmojiSet = 2;
-                    selectedSet = 2;
+                    selectedEmojiSet = 3;
+                    selectedSet = 3;
                 }, label: {
-                    Text("Flaggen")
+                    Text("Formen")
                         .padding()
                         .foregroundColor(.white)
-                        .background(selectedSet == 2 ?  .blue : .gray)
+                        .background(selectedSet == 3 ?  .blue : .gray)
                         .cornerRadius(8)
-                        .frame(maxWidth: .infinity)
+                        .frame(width: (screenWidth-30), height: 50, alignment: .center)
                         .buttonStyle(.borderedProminent)
                 })
-                .frame(width: (UIScreen.main.bounds.width/4), height: 50, alignment: .center)
-                .background(selectedSet == 2 ?  .blue : .gray)
+                .frame(width: (screenWidth-30), height: 50, alignment: .center)
+                .background(selectedSet == 3 ?  .blue : .gray)
                 .cornerRadius(8)
             }
-            Spacer().frame(height: 30)
-            Button (action:{
-                selectedEmojiSet = 3;
-                selectedSet = 3;
-            }, label: {
-                Text("Formen")
-                    .padding()
-                    .foregroundColor(.white)
+            else{
+                 let minimumColumnWidth = Double(UIScreen.main.bounds.width/6)
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: minimumColumnWidth))]) {
+                    
+                        Button (action:{
+                            selectedEmojiSet = 0;
+                            selectedSet = 0;
+                        }, label: {
+                            Text("Smiley")
+                                .padding()
+                                .foregroundColor(.white)
+                                .background(selectedSet == 0 ?  .blue : .gray)
+                                .cornerRadius(8)
+                                .frame(width: (screenWidth/6), height: 50, alignment: .center)
+                                .buttonStyle(.borderedProminent)
+                        })
+                        .frame(width: (screenWidth/6), height: 50, alignment: .center)
+                        .background(selectedSet == 0 ?  .blue : .gray)
+                        .cornerRadius(8)
+                        
+                        Button (action:{
+                            selectedEmojiSet = 1;
+                            selectedSet = 1;
+                        }, label: {
+                            Text("Tiere")
+                                .padding()
+                                .foregroundColor(.white)
+                                .background(selectedSet == 1 ?  .blue : .gray)
+                                .cornerRadius(8)
+                                .frame(width: (screenWidth/6), height: 50, alignment: .center)
+                                .buttonStyle(.borderedProminent)
+                        })
+                        .frame(width: (screenWidth/6), height: 50, alignment: .center)
+                        .background(selectedSet == 1 ?  .blue : .gray)
+                        .cornerRadius(8)
+                        
+                        Button (action:{
+                            selectedEmojiSet = 2;
+                            selectedSet = 2;
+                        }, label: {
+                            Text("Flaggen")
+                                .padding()
+                                .foregroundColor(.white)
+                                .background(selectedSet == 2 ?  .blue : .gray)
+                                .cornerRadius(8)
+                                .frame(width: (screenWidth/6), height: 50, alignment: .center)
+                                .buttonStyle(.borderedProminent)
+                        })
+                        .frame(width: (screenWidth/6), height: 50, alignment: .center)
+                        .background(selectedSet == 2 ?  .blue : .gray)
+                        .cornerRadius(8)
+                    }
+                    Spacer().frame(height: 30)
+                    Button (action:{
+                        selectedEmojiSet = 3;
+                        selectedSet = 3;
+                    }, label: {
+                        Text("Formen")
+                            .padding()
+                            .foregroundColor(.white)
+                            .background(selectedSet == 3 ?  .blue : .gray)
+                            .cornerRadius(8)
+                            .frame(width: (screenWidth-500), height: 50, alignment: .center)
+                            .buttonStyle(.borderedProminent)
+                    })
+                    .frame(width: (screenWidth-500), height: 50, alignment: .center)
                     .background(selectedSet == 3 ?  .blue : .gray)
                     .cornerRadius(8)
-                    .frame(maxWidth: .infinity)
-                    .buttonStyle(.borderedProminent)
-            })
-            .frame(width: (UIScreen.main.bounds.width-30), height: 50, alignment: .center)
-            .background(selectedSet == 3 ?  .blue : .gray)
-            .cornerRadius(8)
+            }
         }
-        
     }
 
 struct DifficultySelecion:View{
+    var screenWidth = UIScreen.main.bounds.width
     @State private var selectedDifficultyValue: Int = Difficulty.easy.rawValue
     var body: some View{
         Spacer().frame(height: 30)
         Text("Schwierigkeitsgrad").font(.title)
         Spacer().frame(height: 30)
+         let minimumColumnWidth = Double(UIScreen.main.bounds.width/4)
         LazyVGrid(columns: [GridItem(.adaptive(minimum: minimumColumnWidth))]) {
             
             Button (action:{
@@ -154,15 +231,13 @@ struct DifficultySelecion:View{
                     .foregroundColor(.white)
                     .background(selectedDifficultyValue == 6 ?  .blue : .gray)
                     .cornerRadius(8)
-                    .frame(maxWidth: .infinity)
+                    .frame(width: (screenWidth/4), height: 50, alignment: .center)
                     .buttonStyle(.borderedProminent)
             })
-            .frame(width: (UIScreen.main.bounds.width/4), height: 50, alignment: .center)
+            .frame(width: (screenWidth/4), height: 50, alignment: .center)
             .background(selectedDifficultyValue == 6 ?  .blue : .gray)
             .cornerRadius(8)
-            
-      
-            
+               
             
             Button (action:{
                 selecetedDifficulty = Difficulty.medium;
@@ -173,14 +248,12 @@ struct DifficultySelecion:View{
                     .foregroundColor(.white)
                     .background(selectedDifficultyValue == 12 ?  .blue : .gray)
                     .cornerRadius(8)
-                    .frame(maxWidth: .infinity)
+                    .frame(width: (screenWidth/4), height: 50, alignment: .center)
                     .buttonStyle(.borderedProminent)
             })
-            .frame(width: (UIScreen.main.bounds.width/4), height: 50, alignment: .center)
+            .frame(width: (screenWidth/4), height: 50, alignment: .center)
             .background(selectedDifficultyValue == 12 ?  .blue : .gray)
             .cornerRadius(8)
-            
-            
             
             
             Button (action:{
@@ -192,18 +265,13 @@ struct DifficultySelecion:View{
                     .foregroundColor(.white)
                     .background(selectedDifficultyValue == 18 ?  .blue : .gray)
                     .cornerRadius(8)
-                    .frame(maxWidth: .infinity)
+                    .frame(width: (screenWidth/4), height: 50, alignment: .center)
                     .buttonStyle(.borderedProminent)
             })
-            .frame(width: (UIScreen.main.bounds.width/4), height: 50, alignment: .center)
+            .frame(width: (screenWidth/4), height: 50, alignment: .center)
             .background(selectedDifficultyValue == 18 ?  .blue : .gray)
             .cornerRadius(8)
-            
-            
-            
-            
-            
-            
+        
             Spacer().frame(height: 30)
         }
     }
