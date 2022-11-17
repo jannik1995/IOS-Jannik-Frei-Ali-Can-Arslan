@@ -19,6 +19,7 @@
 		DECEDDEB27156EDA002C07AA /* Pie.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECEDDEA27156EDA002C07AA /* Pie.swift */; };
 		DECEDDEE27158B36002C07AA /* Cardify.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECEDDEC27158B35002C07AA /* Cardify.swift */; };
 		DECEDDEF27158B36002C07AA /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECEDDED27158B35002C07AA /* CardView.swift */; };
+		E37A0E1029267CD700859943 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37A0E0F29267CD700859943 /* Menu.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		DECEDDEA27156EDA002C07AA /* Pie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pie.swift; sourceTree = "<group>"; };
 		DECEDDEC27158B35002C07AA /* Cardify.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cardify.swift; sourceTree = "<group>"; };
 		DECEDDED27158B35002C07AA /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		E37A0E0F29267CD700859943 /* Menu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 				DECEDDEA27156EDA002C07AA /* Pie.swift */,
 				27E03F3929262B4500EA83F9 /* CardObjectWrapper.swift */,
 				27E03F3D29264D5900EA83F9 /* ShapeGenerator.swift */,
+				E37A0E0F29267CD700859943 /* Menu.swift */,
 			);
 			path = MemoryGame;
 			sourceTree = "<group>";
@@ -160,6 +163,7 @@
 				DECEDDEE27158B36002C07AA /* Cardify.swift in Sources */,
 				DE64AEE527005E4200DEAF24 /* MemoryGame.swift in Sources */,
 				DECEDDE92713617E002C07AA /* Array+Only.swift in Sources */,
+				E37A0E1029267CD700859943 /* Menu.swift in Sources */,
 				27E03F3E29264D5900EA83F9 /* ShapeGenerator.swift in Sources */,
 				27E03F3A29262B4500EA83F9 /* CardObjectWrapper.swift in Sources */,
 				DECEDDEB27156EDA002C07AA /* Pie.swift in Sources */,
