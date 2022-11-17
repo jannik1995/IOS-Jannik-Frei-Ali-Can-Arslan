@@ -7,8 +7,6 @@ class EmojiMemoryGameViewModel: ObservableObject {
         model = EmojiMemoryGameViewModel.createMemoryGame(EmojiSet: 2, Difficulty: Difficulty.easy )
     }
     
-    
-    
     @Published private var model: MemoryGame<CardObjectWrapper>
     
     
@@ -34,7 +32,6 @@ class EmojiMemoryGameViewModel: ObservableObject {
         themes.append(shapes)
         
         for i in 0..<themes.count{
-            print(themes[i].count)
             for j in 0..<themes[i].count{
                 themes[i][j] = CardObjectWrapper(id: j, obj: themes[i][j])
             }
@@ -64,9 +61,7 @@ class EmojiMemoryGameViewModel: ObservableObject {
     }
     
     func cardAmountDisplay(Difficulty: Difficulty, ScreenSize: Int, ElementAmount: Int) -> Int{
-        
         return (Difficulty.rawValue * ScreenSize) % ElementAmount
-        
     }
     
     func getScore()->Int{
