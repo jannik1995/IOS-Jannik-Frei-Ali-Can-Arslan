@@ -38,8 +38,9 @@ class EmojiMemoryGameViewModel: ObservableObject {
         }
         
         let screenSize = Int(UIScreen.main.bounds.width)
-        print(screenSize)
-        let playingTheme = themes[EmojiSet].shuffled()[..<(Difficulty.rawValue )]
+
+        let cardAmount: Int = cardAmountDisplay(Difficulty: Difficulty, ScreenSize: screenSize)
+        let playingTheme = themes[EmojiSet].shuffled()[..<(cardAmount)]
         
         return  MemoryGame<CardObjectWrapper>(numberOfPairsOfCards: playingTheme.count, cardContentFactory: { pairIndex in
             return playingTheme[pairIndex] as! CardObjectWrapper
@@ -60,8 +61,14 @@ class EmojiMemoryGameViewModel: ObservableObject {
        model = EmojiMemoryGameViewModel.createMemoryGame(EmojiSet: EmojiSet, Difficulty: Difficulty)
     }
     
-    func cardAmountDisplay(Difficulty: Difficulty, ScreenSize: Int, ElementAmount: Int) -> Int{
-        return (Difficulty.rawValue * ScreenSize) % ElementAmount
+    static func cardAmountDisplay(Difficulty: Difficulty, ScreenSize: Int) -> Int{
+        var amount:Int = 0
+        if(ScreenSize < 400){
+            amount = Difficulty.rawValue
+        } else {
+            amount = Difficulty.rawValue * 2
+        }
+        return amount
     }
     
     func getScore()->Int{
