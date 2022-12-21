@@ -44,6 +44,7 @@ struct LineChart: View{
                         .foregroundStyle(curGradient)
                     }
                 }
+                //.chartYScale(domain: 0...60)
                 .frame(height: 300)
             }
         }

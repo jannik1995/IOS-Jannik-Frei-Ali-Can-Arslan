@@ -21,6 +21,10 @@
 		2746DA1E294660230074FCC7 /* LineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2746DA1D294660230074FCC7 /* LineChart.swift */; };
 		278780662948A8AE00BAD365 /* DropDownSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278780652948A8AE00BAD365 /* DropDownSelection.swift */; };
 		278780682948ADDE00BAD365 /* DropDownSelectionElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278780672948ADDE00BAD365 /* DropDownSelectionElement.swift */; };
+		27A755232953069300401C0B /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A755222953069300401C0B /* NetworkManager.swift */; };
+		27A7552529530DB900401C0B /* CoinInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A7552429530DB900401C0B /* CoinInformation.swift */; };
+		27A7552729530E8600401C0B /* CoinInformationElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A7552629530E8600401C0B /* CoinInformationElement.swift */; };
+		27A7552929531EE800401C0B /* LineChartTabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A7552829531EE800401C0B /* LineChartTabs.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +63,10 @@
 		2746DA1D294660230074FCC7 /* LineChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChart.swift; sourceTree = "<group>"; };
 		278780652948A8AE00BAD365 /* DropDownSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownSelection.swift; sourceTree = "<group>"; };
 		278780672948ADDE00BAD365 /* DropDownSelectionElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownSelectionElement.swift; sourceTree = "<group>"; };
+		27A755222953069300401C0B /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkManager.swift; path = ../../../../../../Downloads/NetworkManager.swift; sourceTree = "<group>"; };
+		27A7552429530DB900401C0B /* CoinInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinInformation.swift; sourceTree = "<group>"; };
+		27A7552629530E8600401C0B /* CoinInformationElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinInformationElement.swift; sourceTree = "<group>"; };
+		27A7552829531EE800401C0B /* LineChartTabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartTabs.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +164,7 @@
 		273B60242944D8EC001EDF63 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				27A755222953069300401C0B /* NetworkManager.swift */,
 				279353BF2949DB2200EE38EB /* ListView */,
 				279353C12949DBBD00EE38EB /* DetailView */,
 			);
@@ -194,6 +203,9 @@
 			isa = PBXGroup;
 			children = (
 				2746DA1D294660230074FCC7 /* LineChart.swift */,
+				27A7552829531EE800401C0B /* LineChartTabs.swift */,
+				27A7552429530DB900401C0B /* CoinInformation.swift */,
+				27A7552629530E8600401C0B /* CoinInformationElement.swift */,
 			);
 			path = Elements;
 			sourceTree = "<group>";
@@ -327,8 +339,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27A755232953069300401C0B /* NetworkManager.swift in Sources */,
+				27A7552529530DB900401C0B /* CoinInformation.swift in Sources */,
 				273B60262944DA5A001EDF63 /* Model.swift in Sources */,
 				2746DA1E294660230074FCC7 /* LineChart.swift in Sources */,
+				27A7552929531EE800401C0B /* LineChartTabs.swift in Sources */,
 				2746DA182946211D0074FCC7 /* ListView.swift in Sources */,
 				2746DA1A29465D5F0074FCC7 /* DetailView.swift in Sources */,
 				273B60282944E1D4001EDF63 /* ListViewModel.swift in Sources */,
@@ -336,6 +351,7 @@
 				2746DA16294618990074FCC7 /* CardView.swift in Sources */,
 				2746DA1C29465DAA0074FCC7 /* DetailViewModel.swift in Sources */,
 				278780662948A8AE00BAD365 /* DropDownSelection.swift in Sources */,
+				27A7552729530E8600401C0B /* CoinInformationElement.swift in Sources */,
 				278780682948ADDE00BAD365 /* DropDownSelectionElement.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

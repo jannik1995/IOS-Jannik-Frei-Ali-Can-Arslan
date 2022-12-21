@@ -18,10 +18,8 @@ struct DetailView: View{
     var body: some View {
         ScrollView{
             VStack{
-                Text(String(coin.current_price))
-                Text(String(coin.price_change_percentage_24h))
-                Text(String(coin.price_change_24h))
                 LineChart(exchangeRate: viewModel.chartData)
+                CoinInformation(coin: coin)
             }
             .refreshable {
                 viewModel.getexchangeData()

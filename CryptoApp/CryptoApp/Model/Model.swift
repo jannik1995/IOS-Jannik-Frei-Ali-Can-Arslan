@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 
 class Model {
@@ -29,7 +30,12 @@ class Model {
     }
     
     func getExchangeRate24h(id: String , onSuccess: @escaping ()->Void ) {
-        guard let url = URL(string: "https://api.coingecko.com/api/v3/coins/" + id + "/market_chart?vs_currency=usd&days=10&interval=daily") else {
+        /*guard let url = URL(string: "https://api.coingecko.com/api/v3/coins/" + id + "/market_chart?vs_currency=usd&days=10&interval=daily") else {
+            return
+        }*/
+        
+        guard let url = URL(string: "https://api.coingecko.com/api/v3/coins/" + id + "/market_chart?vs_currency=usd&days=10&interval=daily")
+        else {
             return
         }
         
@@ -52,14 +58,11 @@ struct Coin: Codable {
     let current_price: Float
     let market_cap: Int
     let market_cap_rank: Int
-    let price_change_24h: Float
+    let high_24h: Float
+    let low_24h: Float
     let price_change_percentage_24h: Float
-    
-    func getImage() -> Data?{
-        let url = URL(string: image)
-        return try? Data(contentsOf: url!)
-        
-    }
+    let circulating_supply: Double
+    let total_supply: Double?
 }
 
 struct ExchangeRate24h: Codable{

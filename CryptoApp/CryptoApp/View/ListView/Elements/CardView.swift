@@ -16,12 +16,17 @@ struct CardView: View{
     
     var body: some View {
         HStack{
-            Text("Image")
+            AsyncImage(url: URL(string: coin.image), scale: 6)
             VStack (alignment: .leading){
                 Text(coin.name)
-                Text(coin.id)
+                Text(coin.symbol)
             }
-            Text(String(coin.current_price))
+            VStack{
+                Text("$ " + String(coin.current_price))
+                Text(String(coin.price_change_percentage_24h) + " %")
+                    .foregroundColor(coin.price_change_percentage_24h >= 0 ? .green : .red)
+            }
+            
         }
     }
 }

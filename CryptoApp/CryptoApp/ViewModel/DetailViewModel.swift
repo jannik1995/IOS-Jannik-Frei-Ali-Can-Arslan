@@ -12,12 +12,8 @@ class DetailViewModel: ObservableObject {
     
     var coin: Coin
     
-    
-    
     let model = Model()
     
-    //@Published var exchangeRate24h: ExchangeRate24h = ExchangeRate24h(prices: [[0, 0]])
-    //var exchangeRate24h: ExchangeRate24h = ExchangeRate24h(prices: [[0, 0]])
     @Published var chartData: [ChartData] = [ChartData(date: "", value: 0.0)]
     
     init(coin: Coin){

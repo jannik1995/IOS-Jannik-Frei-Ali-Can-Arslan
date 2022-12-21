@@ -18,14 +18,13 @@ class ListViewModel: ObservableObject {
     
     let model = Model()
     
-    @Published var coins: [Coin] = [Coin(id: "DEFAULT", symbol: "DEFAULT", name: "DEFAULT", image: "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579" ,current_price: 0, market_cap: 0, market_cap_rank: 0, price_change_24h: 0.0, price_change_percentage_24h: 0.0)]
+    @Published var coins: [Coin] = [Coin(id: "Default", symbol: "Default", name: "Default", image: "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579", current_price: 0, market_cap: 0, market_cap_rank: 0, high_24h: 0, low_24h: 0, price_change_percentage_24h: 0, circulating_supply: 0, total_supply: 0)]
     
     var sortBy = Sort.marketCap
     
     func getListOfCoins() {
         model.getListOfCoins(onSuccess: {
-            var unsortedCoins = self.model.coins ?? [Coin(id: "FAILURE API CALL", symbol: "FAILURE API CALL", name: "FAILURE API CALL" , image: "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579" , current_price: 0, market_cap: 0, market_cap_rank: 0, price_change_24h: 0.0, price_change_percentage_24h: 0.0)]
-            
+            var unsortedCoins = self.model.coins ?? [Coin(id: "FAILURE API CALL", symbol: "FAILURE API CALL", name: "Default", image: "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579", current_price: 0, market_cap: 0, market_cap_rank: 0, high_24h: 0, low_24h: 0, price_change_percentage_24h: 0, circulating_supply: 0, total_supply: 0)]
             self.sortCoins(coins: unsortedCoins)
             
         }

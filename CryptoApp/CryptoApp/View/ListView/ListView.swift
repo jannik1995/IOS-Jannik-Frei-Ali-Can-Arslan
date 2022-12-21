@@ -10,27 +10,45 @@ import SwiftUI
 
 struct HomeView: View{
     @StateObject var viewModel = ListViewModel.model
+    @ObservedObject var networkManager = NetworkManager()
     
     var body: some View {
-        NavigationStack {
-            DropDownSelection()
-            List(viewModel.coins, id: \.id) { coin in
-                        NavigationLink {
-                            DetailView(coin: coin, viewModel: DetailViewModel(coin:coin))
-                        } label: {
-                            CardView(coin: coin)
+        
+        if (networkManager.isConnected){
+            
+            NavigationStack {
+                DropDownSelection()
+                List(viewModel.coins, id: \.id) { coin in
+                            NavigationLink {
+                                DetailView(coin: coin, viewModel: DetailViewModel(coin:coin))
+                            } label: {
+                                CardView(coin: coin)
+                            }
                         }
-                    }
-            .navigationTitle("Coins")
-            .navigationBarTitleDisplayMode(.large)
+                .navigationTitle("Coins")
+                .navigationBarTitleDisplayMode(.large)
+                }
+            
+
+            .refreshable {
+                viewModel.getListOfCoins()
+
             }
+            .onAppear {
+                viewModel.getListOfCoins()
+            }
+            
+            }
+        else{
+            VStack {
+                Text("Kein Internet").font(.body).fontWeight(.bold)
+                Button {
+                    viewModel.getListOfCoins()
+                } label: {
+                    Label("Retry", systemImage: "arrow.clockwise")
+                }
 
-        .refreshable {
-            viewModel.getListOfCoins()
-
-        }
-        .onAppear {
-            viewModel.getListOfCoins()
+            }
         }
     }
 }
