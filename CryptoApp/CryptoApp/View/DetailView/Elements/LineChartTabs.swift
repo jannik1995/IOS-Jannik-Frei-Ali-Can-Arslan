@@ -9,27 +9,41 @@ import Foundation
 import SwiftUI
 
 struct LineChartTabs: View{
-    
+    let viewModel: DetailViewModel
     
     
     var body: some View {
         
-        TabView {
-            Text("View 1")
+        HStack {
+            Text("1D")
                 .onTapGesture {
-                    
+                    viewModel.getexchangeData(days: 1, intervall: "hourly", dateformat: "dd/MM")
                 }
-                .tabItem{
-                    Label("Tab 1", systemImage: "car")
+            Text("7D")
+                .onTapGesture {
+                    viewModel.getexchangeData(days: 7, intervall: "daily", dateformat: "dd/MM")
                 }
-            Text("View 2")
-                .tabItem{
-                    Label("Tab 2", systemImage: "car.2.fill")
+            Text("1M")
+                .onTapGesture {
+                    viewModel.getexchangeData(days: 31, intervall: "daily", dateformat: "MM")
                 }
-            Text("View 3")
-                .tabItem{
-                    Label("Tab 3", systemImage: "fuelpump.fill")
+            Text("3M")
+                .onTapGesture {
+                    viewModel.getexchangeData(days: 31 * 3, intervall: "monthly", dateformat: "MM")
                 }
+            Text("1Y")
+                .onTapGesture {
+                    viewModel.getexchangeData(days: 365, intervall: "monthly", dateformat: "MM")
+                }
+            Text("2Y")
+                .onTapGesture {
+                    viewModel.getexchangeData(days: 365 * 2, intervall: "yearly", dateformat: "YYYY")
+                }
+            Text("5Y")
+                .onTapGesture {
+                    viewModel.getexchangeData(days: 365 * 5, intervall: "yearly", dateformat: "YYYY")
+                }
+         
         }
     }
 }

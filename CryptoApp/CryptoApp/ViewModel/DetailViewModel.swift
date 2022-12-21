@@ -20,8 +20,8 @@ class DetailViewModel: ObservableObject {
         self.coin = coin
      }
     
-    func getexchangeData(){
-        model.getExchangeRate24h(id: coin.id, onSuccess: {
+    func getexchangeData(days: Int, intervall: String,dateformat: String){
+        model.getExchangeRate24h(id: coin.id, days: String(days), interval: intervall, onSuccess: {
             var exchangeRate24h = self.model.exchangeRate24h ?? ExchangeRate24h(prices: [[0, 0]])
             
             var currentTime = Float(Date().timeIntervalSince1970 * 1000.0)
@@ -32,7 +32,7 @@ class DetailViewModel: ObservableObject {
              
             dateFormatter.dateStyle = .short
             dateFormatter.timeStyle = .none
-            dateFormatter.dateFormat = "dd/MM"
+            dateFormatter.dateFormat = dateformat
             dateFormatter.locale = Locale.current
             
             var temp: [ChartData] = []

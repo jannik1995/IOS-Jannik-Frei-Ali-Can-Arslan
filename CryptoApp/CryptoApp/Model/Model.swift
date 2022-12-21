@@ -29,12 +29,8 @@ class Model {
         .resume()
     }
     
-    func getExchangeRate24h(id: String , onSuccess: @escaping ()->Void ) {
-        /*guard let url = URL(string: "https://api.coingecko.com/api/v3/coins/" + id + "/market_chart?vs_currency=usd&days=10&interval=daily") else {
-            return
-        }*/
-        
-        guard let url = URL(string: "https://api.coingecko.com/api/v3/coins/" + id + "/market_chart?vs_currency=usd&days=10&interval=daily")
+    func getExchangeRate24h(id: String, days: String, interval: String, onSuccess: @escaping ()->Void ) {
+        guard let url = URL(string: "https://api.coingecko.com/api/v3/coins/" + id + "/market_chart?vs_currency=usd&days=" + days + "&interval=" + interval)
         else {
             return
         }

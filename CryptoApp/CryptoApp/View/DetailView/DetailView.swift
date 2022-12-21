@@ -19,14 +19,11 @@ struct DetailView: View{
         ScrollView{
             VStack{
                 LineChart(exchangeRate: viewModel.chartData)
+                LineChartTabs(viewModel: viewModel)
                 CoinInformation(coin: coin)
             }
-            .refreshable {
-                viewModel.getexchangeData()
-                
-            }
             .onAppear {
-                viewModel.getexchangeData()
+                viewModel.getexchangeData(days: 10, intervall: "daily",dateformat: "dd/MM")
             }
         }
     }
