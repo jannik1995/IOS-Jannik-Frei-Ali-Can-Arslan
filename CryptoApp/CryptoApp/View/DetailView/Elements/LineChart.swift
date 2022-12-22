@@ -11,7 +11,7 @@ import SwiftUI
 
 struct LineChart: View{
     
-    var exchangeRate: [ChartData]
+    var viewModel: DetailViewModel
     
     var body: some View {
         
@@ -32,7 +32,7 @@ struct LineChart: View{
             GroupBox ( "Line Chart - Combine LIne and Area chart") {
                 
                 Chart {
-                    ForEach(self.exchangeRate, id: \.self) { item in
+                    ForEach(self.viewModel.chartData, id: \.self) { item in
                         LineMark(
                             x: .value("Time", item.date),
                             y: .value("Value", item.value)
@@ -43,8 +43,11 @@ struct LineChart: View{
                         )
                         .foregroundStyle(curGradient)
                     }
-                }
-                //.chartYScale(domain: 0...60)
+                }.onAppear(viewModel.getListOfCoins())
+                .chartYAxis {
+                            AxisMarks(position: .leading)
+                        }
+                .chartYScale(domain: viewModel.min...viewModel.max)
                 .frame(height: 300)
             }
         }

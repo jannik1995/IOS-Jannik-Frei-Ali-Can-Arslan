@@ -17,11 +17,11 @@ struct LineChartTabs: View{
         HStack {
             Text("1D")
                 .onTapGesture {
-                    viewModel.getexchangeData(days: 1, intervall: "hourly", dateformat: "dd/MM")
+                    viewModel.getexchangeData(days: 1, intervall: "hourly", dateformat: "MM/dd/hh:mm")
                 }
             Text("7D")
                 .onTapGesture {
-                    viewModel.getexchangeData(days: 7, intervall: "daily", dateformat: "dd/MM")
+                    viewModel.getexchangeData(days: 7, intervall: "daily", dateformat: "MM/dd/hh:mm")
                 }
             Text("1M")
                 .onTapGesture {
