@@ -18,7 +18,7 @@ struct DetailView: View{
     var body: some View {
         ScrollView{
             VStack{
-                LineChart(viewMoadel: viewModel)
+                LineChart(viewModel: viewModel)
                 LineChartTabs(viewModel: viewModel)
                 CoinInformation(coin: coin)
             }

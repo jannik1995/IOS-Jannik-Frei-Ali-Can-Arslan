@@ -11,7 +11,7 @@ import SwiftUI
 
 struct LineChart: View{
     
-    var viewModel: DetailViewModel
+    @StateObject var viewModel: DetailViewModel
     
     var body: some View {
         
@@ -43,7 +43,10 @@ struct LineChart: View{
                         )
                         .foregroundStyle(curGradient)
                     }
-                }.onAppear(viewModel.getListOfCoins())
+                }.onAppear{
+                    viewModel.getexchangeData(days: 1, intervall: "hourly", dateformat: "MM/dd/hh:mm")
+                    
+                }
                 .chartYAxis {
                             AxisMarks(position: .leading)
                         }
