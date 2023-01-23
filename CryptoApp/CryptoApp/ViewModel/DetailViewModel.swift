@@ -14,7 +14,7 @@ class DetailViewModel: ObservableObject {
     
     let model = Model()
     
-    @Published var chartData: [ChartData] = [ChartData(date: "", value: 0.0)]
+    @Published var chartData: [ChartData] = [ChartData(date: Date(), value: 0.0)]
     
     var min: Float = 0.0
     var max: Float = 0.0
@@ -23,23 +23,12 @@ class DetailViewModel: ObservableObject {
         self.coin = coin
      }
     
-    func getexchangeData(days: Int, intervall: String, dateformat: String){
+    func getexchangeData(days: Int, intervall: String){
         model.getExchangeRate24h(id: coin.id, days: String(days), interval: intervall, onSuccess: {
             var exchangeRate24h = self.model.exchangeRate24h ?? ExchangeRate24h(prices: [[0, 0]])
             
-            var currentTime = Float(Date().timeIntervalSince1970 * 1000.0)
+            var parsedData: [ChartData] = []
             
-            let dateFormatter = DateFormatter()
-             
-            dateFormatter.dateStyle = .short
-            dateFormatter.timeStyle = .none
-            dateFormatter.dateFormat = dateformat
-            dateFormatter.locale = Locale.current
-            
-            var temp: [ChartData] = []
-            
-            
-            print("Data Point: " + String(exchangeRate24h.prices.count))
             
             self.min = exchangeRate24h.prices[0][1]
             self.max = exchangeRate24h.prices[0][1]
@@ -48,10 +37,8 @@ class DetailViewModel: ObservableObject {
                 
                 let date = Date(timeIntervalSince1970:Double((exchangeRate24h.prices[i][0])) / 1000.0)
                 
-                let parsedDate = dateFormatter.string(from:date)
                 
-                temp.append(ChartData(date: parsedDate, value: exchangeRate24h.prices[i][1]))
-                print("Temp: " + parsedDate)
+                parsedData.append(ChartData(date: date, value: exchangeRate24h.prices[i][1]))
                 
                 let value = exchangeRate24h.prices[i][1]
                 
@@ -62,20 +49,12 @@ class DetailViewModel: ObservableObject {
                     self.max = value
                 }
                 
-                
             }
-            self.chartData = Array(Set(temp)).sorted(by: {$0.date < $1.date})
-            print("Min: " + String(self.min))
-            print("Max: " + String(self.max))
+            self.chartData = parsedData
             
-            for i in self.chartData {
-                print("DAte: " + i.date)
-            }
         }
         )
-        
     }
-    
 }
 
 struct ChartData:Hashable, Comparable, Equatable{
@@ -83,7 +62,7 @@ struct ChartData:Hashable, Comparable, Equatable{
         lhs.date < rhs.date
     }
     
-    var date: String
+    var date: Date
     var value: Float
     
     func hash(into hasher: inout Hasher) {

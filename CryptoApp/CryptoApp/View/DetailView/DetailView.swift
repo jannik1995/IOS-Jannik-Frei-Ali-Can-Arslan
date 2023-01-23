@@ -23,7 +23,7 @@ struct DetailView: View{
                 CoinInformation(coin: coin)
             }
             .onAppear {
-                viewModel.getexchangeData(days: 10, intervall: "daily",dateformat: "MM/dd")
+                viewModel.getexchangeData(days: 10, intervall: "daily")
             }
         }
     }

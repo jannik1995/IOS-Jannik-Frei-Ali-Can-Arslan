@@ -15,33 +15,30 @@ struct HomeView: View{
     var body: some View {
         ZStack {
             if (networkManager.isConnected){
-            
-                NavigationStack {
-                    DropDownSelection()
-                    List(viewModel.coins, id: \.id) { coin in
+                    NavigationStack {
+                        if (viewModel.coins.count < 2) {
+                            ProgressView("Loading")
+                        } else {
+                            DropDownSelection()
+                            List(viewModel.coins, id: \.id) { coin in
                                 NavigationLink {
                                     DetailView(coin: coin, viewModel: DetailViewModel(coin:coin))
                                 } label: {
                                     CardView(coin: coin)
                                 }.padding(.trailing, -30)
                             }
-                    .padding(.horizontal, -20.0)
-                    
-                    .navigationTitle("Coins")
-                    .navigationBarTitleDisplayMode(.large)
-                    
-                    
-                }
-            
-
-                .refreshable {
-                    viewModel.getListOfCoins()
-
-                }
-                .onAppear {
-                    viewModel.getListOfCoins()
-                }
-            
+                        .padding(.horizontal, -20.0)
+                        
+                        .navigationTitle("Coins")
+                        .navigationBarTitleDisplayMode(.large)
+                    }
+                    }
+                    .refreshable {
+                        viewModel.getListOfCoins()
+                    }
+                    .onAppear {
+                        viewModel.getListOfCoins()
+                    }
             }
             else{
                 VStack {
