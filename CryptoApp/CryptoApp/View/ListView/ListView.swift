@@ -13,45 +13,52 @@ struct HomeView: View{
     @ObservedObject var networkManager = NetworkManager()
     
     var body: some View {
-        
-        if (networkManager.isConnected){
+        ZStack {
+            if (networkManager.isConnected){
             
-            NavigationStack {
-                DropDownSelection()
-                List(viewModel.coins, id: \.id) { coin in
-                            NavigationLink {
-                                DetailView(coin: coin, viewModel: DetailViewModel(coin:coin))
-                            } label: {
-                                CardView(coin: coin)
+                NavigationStack {
+                    DropDownSelection()
+                    List(viewModel.coins, id: \.id) { coin in
+                                NavigationLink {
+                                    DetailView(coin: coin, viewModel: DetailViewModel(coin:coin))
+                                } label: {
+                                    CardView(coin: coin)
+                                }.padding(.trailing, -30)
                             }
-                        }
-                .navigationTitle("Coins")
-                .navigationBarTitleDisplayMode(.large)
+                    .padding(.horizontal, -20.0)
+                    
+                    .navigationTitle("Coins")
+                    .navigationBarTitleDisplayMode(.large)
+                    
+                    
                 }
             
 
-            .refreshable {
-                viewModel.getListOfCoins()
-
-            }
-            .onAppear {
-                viewModel.getListOfCoins()
-            }
-            
-            }
-        else{
-            VStack {
-                Text("Kein Internet").font(.body).fontWeight(.bold)
-                Button {
+                .refreshable {
                     viewModel.getListOfCoins()
-                } label: {
-                    Label("Retry", systemImage: "arrow.clockwise")
-                }
 
+                }
+                .onAppear {
+                    viewModel.getListOfCoins()
+                }
+            
+            }
+            else{
+                VStack {
+                    Text("Kein Internet").font(.body).fontWeight(.bold)
+                    Button {
+                        viewModel.getListOfCoins()
+                    } label: {
+                        Label("Retry", systemImage: "arrow.clockwise")
+                    }
+
+                }
             }
         }
+        .background(Color.black)
     }
 }
+
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {

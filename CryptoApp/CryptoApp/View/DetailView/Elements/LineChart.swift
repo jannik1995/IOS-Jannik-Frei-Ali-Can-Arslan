@@ -39,12 +39,14 @@ struct LineChart: View{
                         )
                         AreaMark(
                             x: .value("Time", item.date),
-                            y: .value("Value", item.value)
+                            yStart: .value("amount", item.value),
+                                // get the max close value or adjust to your use case
+                            yEnd: .value("amountEnd", viewModel.min)
                         )
                         .foregroundStyle(curGradient)
                     }
                 }.onAppear{
-                    viewModel.getexchangeData(days: 1, intervall: "hourly", dateformat: "MM/dd/hh:mm")
+                    viewModel.getexchangeData(days: 7, intervall: "daily", dateformat: "MM/dd/hh:mm")
                     
                 }
                 .chartYAxis {

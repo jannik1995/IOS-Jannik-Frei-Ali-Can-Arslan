@@ -25,11 +25,11 @@ struct LineChartTabs: View{
                 }
             Text("1M")
                 .onTapGesture {
-                    viewModel.getexchangeData(days: 31, intervall: "daily", dateformat: "MM")
+                    viewModel.getexchangeData(days: 31, intervall: "daily", dateformat: "MM/dd")
                 }
             Text("3M")
                 .onTapGesture {
-                    viewModel.getexchangeData(days: 31 * 3, intervall: "monthly", dateformat: "MM")
+                    viewModel.getexchangeData(days: 31 * 3, intervall: "monthly", dateformat: "MM/dd")
                 }
             Text("1Y")
                 .onTapGesture {
@@ -37,7 +37,7 @@ struct LineChartTabs: View{
                 }
             Text("2Y")
                 .onTapGesture {
-                    viewModel.getexchangeData(days: 365 * 2, intervall: "yearly", dateformat: "YYYY")
+                    viewModel.getexchangeData(days: 365 * 2, intervall: "yearly", dateformat: "YYYY/MM")
                 }
             Text("5Y")
                 .onTapGesture {

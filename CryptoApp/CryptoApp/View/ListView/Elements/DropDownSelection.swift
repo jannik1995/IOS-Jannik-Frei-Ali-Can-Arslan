@@ -17,28 +17,28 @@ struct DropDownSelection: View{
         
     var body: some View{
         GroupBox(){
-            DisclosureGroup("Sort") {
-                Divider().padding(.vertical, 2)
-                DropDownSelectionElement(text: "Marked Cap")
-                    .backgroundStyle(viewModel.sortBy == Sort.marketCap ?  .blue : .gray)
-                    .onTapGesture {
-                        viewModel.sortListBy(sort: Sort.marketCap)
-                    print("pressed")
+            HStack {
+                Button(action: {
+                    viewModel.sortListBy(sort: Sort.name)
+                }) {
+                    Text("Name")
                 }
-                Divider().padding(.vertical, 2)
-                DropDownSelectionElement(text: "Name")
-                    .backgroundStyle(viewModel.sortBy == Sort.name ?  .blue : .gray)
-                    .onTapGesture {
-                    viewModel.sortListBy(sort: Sort.name) 
+                .foregroundColor(viewModel.sortBy == Sort.name ? Color.blue : Color.gray)
+                Button(action: {
+                    viewModel.sortListBy(sort: Sort.marketCap)
+                }) {
+                    Text("Marked Cap")
                 }
-                
-                Divider().padding(.vertical, 2)
-                DropDownSelectionElement(text: "Price")
-                    .backgroundStyle(viewModel.sortBy == Sort.price ?  .blue : .gray)
-                    .onTapGesture {
+                .foregroundColor(viewModel.sortBy == Sort.marketCap ? Color.blue : Color.gray)
+                Button(action: {
                     viewModel.sortListBy(sort: Sort.price)
+                }) {
+                    Text("Price")
                 }
+                .foregroundColor(viewModel.sortBy == Sort.price ? Color.blue : Color.gray)
             }
         }
     }
 }
+
+
